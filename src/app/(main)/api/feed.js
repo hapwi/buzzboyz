@@ -5,8 +5,8 @@ export default function handler(req, res) {
     title: 'Their Side',
     description:
       'Conversations with the most tragically misunderstood people of our time.',
-    id: 'https://their-side-feed.vercel.app/',
-    link: 'https://their-side-feed.vercel.app/',
+    id: 'https://buzzboyz.vercel.app/',
+    link: 'https://buzzboyz.vercel.app/',
     language: 'en',
     image: 'http://example.com/image.png',
     favicon: 'http://example.com/favicon.ico',
@@ -14,7 +14,7 @@ export default function handler(req, res) {
     updated: new Date(),
     generator: 'https://github.com/jpmonette/feed',
     feedLinks: {
-      rss: 'https://their-side-feed.vercel.app/api/feed',
+      rss: 'https://buzzboyz.vercel.app/api/feed',
     },
     author: {
       name: 'John Doe',
@@ -52,7 +52,7 @@ export default function handler(req, res) {
                 <li>“What’s happening?”, Bill’s new book on effective management <a href="#">on Amazon</a></li>
                 </ul>`,
       enclosure: {
-        url: 'https://their-side-feed.vercel.app/episode-005.mp3',
+        url: 'https://buzzboyz.vercel.app/episode-005.mp3',
         type: 'audio/mpeg',
       },
     },
@@ -63,7 +63,7 @@ export default function handler(req, res) {
     feed.addItem({
       title: episode.title,
       id: episode.id,
-      link: `https://their-side-feed.vercel.app/episode-${episode.id}`,
+      link: `https://buzzboyz.vercel.app/episode-${episode.id}`,
       description: episode.description,
       content: episode.content,
       author: [
