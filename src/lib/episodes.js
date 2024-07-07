@@ -29,7 +29,7 @@ export async function getAllEpisodes() {
   let episodes = items.map(
     ({ id, title, description, content, enclosures, published }) => ({
       id,
-      title: `${id}: ${title}`,
+      title: `${id} - ${title}`,
       published: new Date(published),
       description,
       content,
