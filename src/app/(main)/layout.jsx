@@ -98,7 +98,7 @@ export default function MainLayout({ children }) {
               <Link href="/">Buzz Boyz</Link>
             </p>
             <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
-              The Boyz R Buzzin
+              Live life with a Buzz
             </p>
           </div>
           <AboutSection className="mt-12 hidden lg:block" />

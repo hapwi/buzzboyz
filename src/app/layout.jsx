@@ -2,12 +2,10 @@ import '@/styles/tailwind.css'
 
 export const metadata = {
   title: {
-    template: '%s - Their Side',
-    default:
-      'Their Side - Conversations with the most tragically misunderstood people of our time',
+    template: '%s - Buzz Boyz',
+    default: 'Buzz Boyz - Live life with a buzz',
   },
-  description:
-    'Conversations with the most tragically misunderstood people of our time.',
+  description: 'Live life with a buzz.',
 }
 
 export default function RootLayout({ children }) {

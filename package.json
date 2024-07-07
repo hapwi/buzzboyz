@@ -10,6 +10,7 @@
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@heroicons/react": "^2.1.4",
     "@tailwindcss/typography": "^0.5.7",
     "autoprefixer": "^10.4.12",
     "clsx": "^2.1.0",

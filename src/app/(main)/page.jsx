@@ -76,7 +76,7 @@ function EpisodeEntry({ episode }) {
               className="flex items-center text-sm font-bold leading-6 text-pink-500 hover:text-pink-700 active:text-pink-900"
               aria-label={`Show notes for episode ${episode.title}`}
             >
-              Show notes
+              Watch Episode
             </Link>
           </div>
         </div>

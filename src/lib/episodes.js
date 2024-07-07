@@ -23,6 +23,9 @@ export async function getAllEpisodes() {
   let feed = await parseFeed('https://buzz-rss.vercel.app/api/feed')
   let items = parse(FeedSchema, feed).items
 
+  // Sort items by published date in descending order
+  items.sort((a, b) => b.published - a.published)
+
   let episodes = items.map(
     ({ id, title, description, content, enclosures, published }) => ({
       id,
