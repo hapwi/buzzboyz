@@ -13,7 +13,7 @@ export async function getAllEpisodes() {
         enclosures: array(
           object({
             url: string(),
-            type: string(),
+            type: string(), // Ensure this can include video types
           }),
         ),
       }),
@@ -33,10 +33,18 @@ export async function getAllEpisodes() {
       published: new Date(published),
       description,
       content,
-      audio: enclosures.map((enclosure) => ({
-        src: enclosure.url,
-        type: enclosure.type,
-      }))[0],
+      audio: enclosures
+        .filter((enclosure) => enclosure.type.startsWith('audio/'))
+        .map((enclosure) => ({
+          src: enclosure.url,
+          type: enclosure.type,
+        }))[0], // Assuming first audio enclosure is the one to use
+      video: enclosures
+        .filter((enclosure) => enclosure.type.startsWith('video/'))
+        .map((enclosure) => ({
+          src: enclosure.url,
+          type: enclosure.type,
+        }))[0], // Assuming first video enclosure is the one to use
     }),
   )
 
