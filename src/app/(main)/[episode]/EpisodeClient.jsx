@@ -8,6 +8,8 @@ import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 export default function EpisodeClient({ episode }) {
   let date = new Date(episode.published)
 
+  console.log('Episode Content: ', episode.content)
+
   return (
     <article className="py-16 lg:py-36">
       <Container>
