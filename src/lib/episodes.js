@@ -13,7 +13,7 @@ export async function getAllEpisodes() {
         enclosures: array(
           object({
             url: string(),
-            type: string(), // Ensure this can include video types
+            type: string(), // Ensure this can include video types test commit
           }),
         ),
       }),
