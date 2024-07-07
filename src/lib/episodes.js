@@ -20,7 +20,7 @@ export async function getAllEpisodes() {
     ),
   })
 
-  let feed = await parseFeed('https://their-side-feed.vercel.app/api/feed')
+  let feed = await parseFeed('https://buzz-rss.vercel.app/api/feed')
   let items = parse(FeedSchema, feed).items
 
   let episodes = items.map(
