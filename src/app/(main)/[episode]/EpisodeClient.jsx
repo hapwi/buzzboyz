@@ -1,52 +1,47 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 
 export default function EpisodeClient({ episode }) {
-  const [isSticky, setIsSticky] = useState(false)
-  const backButtonRef = useRef(null)
   const date = new Date(episode.published)
+  const [isSticky, setIsSticky] = useState(false)
+  const headerRef = useRef(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (backButtonRef.current) {
-        const rect = backButtonRef.current.getBoundingClientRect()
-        setIsSticky(rect.top <= 0)
-      }
-    }
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (headerRef.current) {
+  //       setIsSticky(
+  //         window.scrollY > headerRef.current.getBoundingClientRect().bottom,
+  //       )
+  //     }
+  //   }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  //   window.addEventListener('scroll', handleScroll)
+  //   return () => window.removeEventListener('scroll', handleScroll)
+  // }, [])
 
   return (
     <article className="py-16 lg:py-36">
+      {/* Sticky Back button */}
+      <div
+        className={`sticky top-0 z-10 ${isSticky ? 'bg-white/95 shadow-md backdrop-blur-sm' : ''}`}
+      >
+        <div className="container mx-auto px-4 py-4">
+          <Link href="/" legacyBehavior>
+            <a className="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-transform hover:-translate-y-1 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+              <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+              Back to Episodes
+            </a>
+          </Link>
+        </div>
+      </div>
       <Container>
-        <header className="flex flex-col">
-          <div
-            ref={backButtonRef}
-            className={`transition-all duration-300 ${
-              isSticky
-                ? 'fixed left-0 right-0 top-0 z-10 bg-white py-4 shadow-md'
-                : ''
-            }`}
-          >
-            <div className={`${isSticky ? 'container mx-auto px-4' : ''}`}>
-              <Link href="/" legacyBehavior>
-                <a className="inline-flex transform items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-transform hover:-translate-y-1 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-                  <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
-                  Back to Episodes
-                </a>
-              </Link>
-            </div>
-          </div>
-          <div
-            className={`mt-8 flex flex-col gap-6 ${isSticky ? 'pt-16' : ''}`}
-          >
+        <header ref={headerRef} className="relative flex flex-col">
+          <div className="mt-8 flex flex-col gap-6">
             <div className="flex flex-col">
               <h1 className="text-4xl font-bold text-slate-900">
                 {episode.title}
@@ -62,10 +57,9 @@ export default function EpisodeClient({ episode }) {
           </div>
         </header>
         <hr className="my-12 border-gray-200" />
-        <div
-          className="prose prose-slate mt-14 [&>h2:nth-of-type(3n)]:before:bg-violet-200 [&>h2:nth-of-type(3n+2)]:before:bg-indigo-200 [&>h2]:mt-12 [&>h2]:flex [&>h2]:items-center [&>h2]:font-mono [&>h2]:text-sm [&>h2]:font-medium [&>h2]:leading-7 [&>h2]:text-slate-900 [&>h2]:before:mr-3 [&>h2]:before:h-3 [&>h2]:before:w-1.5 [&>h2]:before:rounded-r-full [&>h2]:before:bg-cyan-200 [&>ul]:mt-6 [&>ul]:list-['\2013\20'] [&>ul]:pl-5"
-          dangerouslySetInnerHTML={{ __html: episode.content }}
-        />
+        <div className="prose prose-slate mt-14">
+          <div dangerouslySetInnerHTML={{ __html: episode.content }} />
+        </div>
       </Container>
     </article>
   )
