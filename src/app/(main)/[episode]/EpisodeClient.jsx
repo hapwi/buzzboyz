@@ -39,8 +39,8 @@ export default function EpisodeClient({ episode }) {
             </p>
           </div>
         </header>
-        <hr className="my-12 border-gray-200" />
-        <div className="prose prose-slate mx-auto mt-14 max-w-3xl">
+        <hr className="my-6 border-gray-200" />
+        <div className="prose prose-slate mx-auto mb-7 mt-7 max-w-3xl">
           <div dangerouslySetInnerHTML={{ __html: episode.content }} />
         </div>
       </Container>
