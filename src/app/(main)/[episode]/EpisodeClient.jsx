@@ -26,7 +26,7 @@ export default function EpisodeClient({ episode }) {
         <header className="relative mx-auto flex max-w-3xl flex-col">
           <div className="mt-4 flex flex-col gap-6">
             <div className="flex flex-col">
-              <h1 className="text-4xl font-bold text-slate-900">
+              <h1 className="text-balance text-3xl font-bold text-slate-900">
                 {episode.title}
               </h1>
               <FormattedDate
@@ -34,7 +34,7 @@ export default function EpisodeClient({ episode }) {
                 className="order-first font-mono text-sm leading-7 text-slate-500"
               />
             </div>
-            <p className="mt-3 text-lg font-medium leading-8 text-slate-700">
+            <p className="text-lg font-medium leading-8 text-slate-700">
               {episode.description}
             </p>
           </div>
