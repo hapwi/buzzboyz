@@ -38,18 +38,6 @@ function InstagramIcon(props) {
   )
 }
 
-function RSSIcon(props) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 32 32" {...props}>
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M8.5 4h15A4.5 4.5 0 0 1 28 8.5v15a4.5 4.5 0 0 1-4.5 4.5h-15A4.5 4.5 0 0 1 4 23.5v-15A4.5 4.5 0 0 1 8.5 4ZM13 22a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-6-6a9 9 0 0 1 9 9h3A12 12 0 0 0 7 13v3Zm5.74-4.858A15 15 0 0 0 7 10V7a18 18 0 0 1 18 18h-3a15 15 0 0 0-9.26-13.858Z"
-      />
-    </svg>
-  )
-}
-
 function PersonIcon(props) {
   return (
     <svg aria-hidden="true" viewBox="0 0 11 12" {...props}>
@@ -114,13 +102,12 @@ export default function MainLayout({ children }) {
             <div className="h-px bg-gradient-to-r from-slate-200/0 via-slate-200 to-slate-200/0 lg:hidden" />
             <ul
               role="list"
-              className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:flex-col lg:gap-4"
+              className="mt-4 flex justify-center gap-10 text-base font-medium leading-7 text-slate-700 sm:gap-8 lg:justify-start"
             >
               {[
-                ['Spotify', SpotifyIcon],
-                ['Apple Podcast', ApplePodcastIcon],
-                ['Instagram', InstagramIcon],
-                ['RSS Feed', RSSIcon],
+                ['', SpotifyIcon],
+                ['', ApplePodcastIcon],
+                ['', InstagramIcon],
               ].map(([label, Icon]) => (
                 <li key={label} className="flex">
                   <Link
