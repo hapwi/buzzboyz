@@ -1,26 +1,52 @@
 'use client'
 
+import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { FormattedDate } from '@/components/FormattedDate'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 
 export default function EpisodeClient({ episode }) {
-  let date = new Date(episode.published)
+  const [isSticky, setIsSticky] = useState(false)
+  const backButtonRef = useRef(null)
+  const date = new Date(episode.published)
 
-  console.log('Episode Content: ', episode.content)
+  useEffect(() => {
+    const handleScroll = () => {
+      if (backButtonRef.current) {
+        const rect = backButtonRef.current.getBoundingClientRect()
+        setIsSticky(rect.top <= 0)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <article className="py-16 lg:py-36">
       <Container>
         <header className="flex flex-col">
-          <Link href="/" legacyBehavior>
-            <a className="inline-flex transform items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-transform hover:-translate-y-1 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-              <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
-              Back to Episodes
-            </a>
-          </Link>
-          <div className="mt-8 flex flex-col gap-6">
+          <div
+            ref={backButtonRef}
+            className={`transition-all duration-300 ${
+              isSticky
+                ? 'fixed left-0 right-0 top-0 z-10 bg-white py-4 shadow-md'
+                : ''
+            }`}
+          >
+            <div className={`${isSticky ? 'container mx-auto px-4' : ''}`}>
+              <Link href="/" legacyBehavior>
+                <a className="inline-flex transform items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-transform hover:-translate-y-1 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+                  <ArrowLeftIcon className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Back to Episodes
+                </a>
+              </Link>
+            </div>
+          </div>
+          <div
+            className={`mt-8 flex flex-col gap-6 ${isSticky ? 'pt-16' : ''}`}
+          >
             <div className="flex flex-col">
               <h1 className="text-4xl font-bold text-slate-900">
                 {episode.title}
